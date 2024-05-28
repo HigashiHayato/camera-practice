@@ -1,6 +1,5 @@
 import './App.css';
-import { Article } from "./components/index";
-import Webcam from "react-webcam";
+import { Article, Camera } from "./components/index";
 
 function App() {
   return (
@@ -8,7 +7,7 @@ function App() {
       <Article
         title={'カメラアプリ検証'}
       />
-      <Webcam />
+      <Camera />
     </div>
   );
 }
