@@ -1,15 +1,17 @@
 import Webcam from "react-webcam";
-import {useRef, useCallback, useState} from "react";
+import { useRef, useCallback, useState } from "react";
+import "./Camera.css";
+
 const Camera = () => {
     const webcamRef = useRef(null);
 
     const capture = useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot();
         console.log(imageSrc);
-        setCapturedImage(imageSrc);
+        setCapturedImages(preveImages => [...preveImages, imageSrc]);
     }, []);
 
-    const [capturedImage, setCapturedImage] = useState(null);
+    const [capturedImages, setCapturedImages] = useState([]);
 
     return (
         <div>
@@ -21,16 +23,14 @@ const Camera = () => {
             <button onClick={capture}>
                 撮影
             </button>
-            {capturedImage ? (
-                <div>
-                    <h2>キャプチャーされた画像:</h2>
-                    <img src={capturedImage} alt="captured" />
-                </div>
-            ) : (
-                <div>
-                    <h2>画像を撮影してください</h2>
-                </div>
-            )}
+            <h2>撮影した画像</h2>
+            <div className="captured-images">
+                {capturedImages.map((image, index) => (
+                    <div key={index}>
+                        <img src={image} alt={`captured-${index}`} className="image" />
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }

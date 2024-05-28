@@ -1,0 +1,9 @@
+.captured-images {
+    display: flex;
+    margin-right: 10px;
+}
+
+.image {
+    width: 150px;
+    height: auto;
+}
