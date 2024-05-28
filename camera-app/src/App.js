@@ -1,15 +1,19 @@
 import './App.css';
-import { Article, Camera } from "./components/index";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Home, Photo} from "./screen/index";
 
 function App() {
+
   return (
+    <BrowserRouter>
     <div>
-      <Article
-        title={'カメラアプリ検証'}
-      />
-      <Camera />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/photo" element={<Photo />} />
+      </Routes>
     </div>
-  );
+  </BrowserRouter>
+  )
 }
 
 export default App;
