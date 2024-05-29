@@ -1,4 +1,6 @@
 import { useLocation } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Confirm = () => {
     const location = useLocation();
@@ -11,8 +13,14 @@ const Confirm = () => {
 
     return (
         <>
-        <h1>{text}</h1>
-        <div className="captured-images">{imageElements}</div>
+            <h1>{text}</h1>
+            <div className="captured-images">{imageElements}</div>
+            <Button
+                variant="secondary"
+                href="/end"
+            >
+                送信
+            </Button>
         </>
 
 

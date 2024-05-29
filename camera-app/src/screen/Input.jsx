@@ -20,7 +20,6 @@ const Input = () => {
                     onChange={(e) => setName({ q: e.target.value })}
                 />
             </div>
-            <Link to={"/photo"}>写真撮影</Link>
             <Button
             onClick={() => navigate('/photo', { state: { text, }, })}
             variant='secondary'
