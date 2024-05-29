@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Input, Photo} from "./screen/index";
+import { Home, Input, Photo, Confirm} from "./screen/index";
 
 function App() {
 
@@ -11,6 +11,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/input" element={<Input />} />
         <Route exact path="/photo" element={<Photo />} />
+        <Route exact path="/confirm" element={<Confirm />} />
       </Routes>
     </div>
   </BrowserRouter>
