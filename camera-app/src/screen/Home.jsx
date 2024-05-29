@@ -5,7 +5,7 @@ const Home = () => {
         <>
             <h1>aaaa</h1>
             <h1>aaaa</h1>
-            <Link to={"/photo"}>写真撮影</Link>
+            <Link to={"/input"}>入力画面</Link>
         </>
     )
 }
