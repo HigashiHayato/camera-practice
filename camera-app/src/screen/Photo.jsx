@@ -15,17 +15,24 @@ const Photo = () => {
   }
 
   return (
-    <div>
-      <Article
-        title={'カメラアプリ検証'}
-      />
-      <Camera imagesToPhoto={imagesToPhoto}/>
-      <Button
-        variant="secondary"
-        onClick={() => navigate('/confirm', { state: { text, images}, })}
-      >
-        次へ
-      </Button>
+    <div className="container py-4">
+      <Article title={'カメラアプリ検証'} />
+      <div className="row justify-content-center">
+        <div className="col-md-8">
+          <Camera imagesToPhoto={imagesToPhoto} />
+        </div>
+      </div>
+      <div className="row justify-content-center mt-4">
+        <div className="col-auto">
+          <Button
+            variant="secondary"
+            onClick={() => navigate('/confirm', { state: { text, images } })}
+            style={{ marginTop: '-20px' }}
+          >
+            次へ
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }
