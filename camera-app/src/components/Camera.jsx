@@ -19,7 +19,7 @@ const Camera = ({ imagesToPhoto }) => {
     }, [capturedImages, imagesToPhoto]);
 
     return (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
             <Webcam
                 audio={false}
                 ref={webcamRef}
@@ -27,7 +27,8 @@ const Camera = ({ imagesToPhoto }) => {
             />
             <Button
                 variant="danger"
-                onClick={capture}>
+                onClick={capture}
+                style={{ marginTop: '10px', marginBottom: '10px' }}>
                 撮影
             </Button>
             <h2>撮影した画像</h2>

@@ -1,0 +1,10 @@
+.home-container {
+    height: 100vh;
+    background-color: #f8f9fa; /* 背景色を変更 */
+    font-family: 'Arial', sans-serif; /* フォントを変更 */
+}
+
+.btn-hover:hover {
+    transform: translateY(-3px); /* ホバーエフェクトを追加 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* ボタンに影を追加 */
+}
