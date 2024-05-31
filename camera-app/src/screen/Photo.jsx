@@ -7,6 +7,7 @@ import { useState } from "react";
 const Photo = () => {
   const location = useLocation();
   const text = location.state.text;
+  const textOthers = location.state.textOthers
   const navigate = useNavigate();
 
   const [images, setImages] = useState('');
@@ -26,7 +27,7 @@ const Photo = () => {
         <div className="col-auto">
           <Button
             variant="secondary"
-            onClick={() => navigate('/confirm', { state: { text, images } })}
+            onClick={() => navigate('/confirm', { state: { text, textOthers, images } })}
             style={{ marginTop: '-20px' }}
           >
             次へ

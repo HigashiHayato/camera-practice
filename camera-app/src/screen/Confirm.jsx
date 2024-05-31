@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Confirm = () => {
     const location = useLocation();
     const text = location.state.text;
+    const textOthers = location.state.textOthers;
     const images = location.state.images;
 
     const imageElements = images.map((image, index) => (
@@ -13,7 +14,8 @@ const Confirm = () => {
 
     return (
         <div className="container py-4">
-            <h1 className="mb-4">{text}</h1>
+            <h1 className="mb-4">指名：{text}</h1>
+            <h1 className="mb-4">その他：{textOthers}</h1>
             <div className="d-flex flex-wrap mb-4">{imageElements}</div>
             <Button variant="secondary" href="/end">
                 送信

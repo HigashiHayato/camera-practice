@@ -1,12 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Input = () => {
-    const [name, setName] = useSearchParams({ q: '' });
-    const text = name.get('q');
+    const [name, setName] = useState('');
+    const [others, setOthers] = useState('');
     const navigate = useNavigate();
     const otherInputRef = useRef(null);
 
@@ -16,6 +16,14 @@ const Input = () => {
         }
     };
 
+    const handleNameChange = (e) => {
+        setName(e.target.value);
+    };
+
+    const handleOthersChange = (e) => {
+        setOthers(e.target.value);
+    };
+
     return (
         <div className="container d-flex flex-column justify-content-center align-items-center vh-100" style={{background: '#f8f9fa'}}>
             <h1 className="mb-4">入力画面</h1>
@@ -23,9 +31,9 @@ const Input = () => {
                 <Form.Group controlId="formName" style={{ marginBottom: '20px' }}>
                     <Form.Control
                         type="text"
-                        placeholder="Name"
-                        value={text}
-                        onChange={(e) => setName({ q: e.target.value })}
+                        placeholder="氏名"
+                        value={name}
+                        onChange={handleNameChange}
                         onKeyPress={handleKeyPress}
                     />
                 </Form.Group>
@@ -34,10 +42,12 @@ const Input = () => {
                         type="text"
                         placeholder="その他"
                         ref={otherInputRef}
+                        value={others}
+                        onChange={handleOthersChange}
                     />
                 </Form.Group>
                 <Button
-                    onClick={() => navigate('/photo', { state: { text } })}
+                    onClick={() => navigate('/photo', { state: { text: name } })}
                     variant="secondary"
                     style={{ width: '100%' }}
                     className="btn-hover"
