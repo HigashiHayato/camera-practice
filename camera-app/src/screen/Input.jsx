@@ -47,7 +47,7 @@ const Input = () => {
                     />
                 </Form.Group>
                 <Button
-                    onClick={() => navigate('/photo', { state: { text: name } })}
+                    onClick={() => navigate('/select', { state: { text: name } })}
                     variant="secondary"
                     style={{ width: '100%' }}
                     className="btn-hover"
