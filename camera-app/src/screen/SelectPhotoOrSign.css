@@ -1,0 +1,21 @@
+.button-container {
+    display: flex; /* ボタンを水平方向に並べる */
+    justify-content: center; /* ボタンを中央揃えにする */
+    gap: 10px; /* ボタン間の間隔を設定する */
+}
+.fullscreen-container {
+    position: relative; /* 親要素を相対的な位置指定にする */
+    width: 100vw; /* 画面幅いっぱいに広がる */
+    height: 100vh; /* 画面高さいっぱいに広がる */
+    display: flex; /* 子要素を中央に配置するためのflexコンテナ */
+    justify-content: center; /* 子要素を中央揃えにする */
+    align-items: center; /* 子要素を縦方向に中央揃えにする */
+}
+
+.centered-content {
+    text-align: center; /* ボタンを中央揃えにする */
+}
+
+.button-margin {
+    margin: 10px; /* ボタンどうしの間隔を設定する */
+}
