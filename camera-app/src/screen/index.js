@@ -5,3 +5,4 @@ export {default as Confirm} from "./Confirm";
 export {default as End} from "./End";
 export {default as SelectPhotoOrSign} from "./SelectPhotoOrSign";
 export {default as WriteDigitalSign} from "./WriteDigitalSign";
+export {default as InputMultipleItems} from "./InputMultipleItems";
