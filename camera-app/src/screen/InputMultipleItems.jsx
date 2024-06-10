@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,10 +14,6 @@ const InputMultipleItems = () => {
 
     const handleIdChange = (e) => {
         setId(e.target.value);
-    };
-
-    const handleNumberChange = (e) => {
-        setNumber(e.target.value);
     };
 
     const handleIdKeyPress = (event) => {
@@ -36,13 +32,6 @@ const InputMultipleItems = () => {
         }
     };
 
-    // const handleSave = () => {
-    //     const newItem = { id, number };
-    //     setInputHistory(prevHistory => [...prevHistory, newItem]);
-    //     setId('');
-    //     setNumber('1');
-    // };
-
     const handleNumberFieldChange = (e) => {
         const input = e.target.value;
         if (input.length === 8 && !isNaN(input)) {
@@ -55,13 +44,6 @@ const InputMultipleItems = () => {
             setNumber(input);
         }
     };
-
-    // useEffect(() => {
-    //     // 数入力欄がレンダリングされた直後に、デフォルトの1を選択する
-    //     if (numberInputRef.current) {
-    //         numberInputRef.current.setSelectionRange(0, 1);
-    //     }
-    // }, []);
 
     const handleNumberInputFocus = () => {
         if (numberInputRef.current) {
@@ -89,21 +71,12 @@ const InputMultipleItems = () => {
                         placeholder="数"
                         ref={numberInputRef}
                         value={number}
-                        onChange={handleNumberChange}
                         onKeyPress={handleNumberKeyPress}
                         onChange={handleNumberFieldChange}
                         onFocus={handleNumberInputFocus}
                     />
                 </Form.Group>
                 <div className="d-flex justify-content-between">
-                    {/* <Button
-                        onClick={handleSave}
-                        variant="secondary"
-                        style={{ width: '48%' }}
-                        className="btn-hover"
-                    >
-                        保存
-                    </Button> */}
                     <Button
                         onClick={() => navigate('/', { state: { text: id } })}
                         variant="secondary"
