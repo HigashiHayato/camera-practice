@@ -20,20 +20,6 @@ const InputMultipleItems = () => {
         setNumber(e.target.value);
     };
 
-    const handleNumberPaste = (e) => {
-        const pastedValue = e.clipboardData.getData('text/plain');
-        if (pastedValue.length === 8) {
-            // 直前のIDと数を保存
-            setInputHistory(prevHistory => [...prevHistory, { id, number }]);
-            // IDをセット
-            setId(pastedValue);
-            // 数をリセット
-            setNumber('1');
-        }
-        // ペーストされた値が数入力欄に表示されるのを防ぐ
-        e.preventDefault();
-    };
-
     const handleIdKeyPress = (event) => {
         if (event.key === 'Enter') {
             numberInputRef.current.focus();
@@ -42,22 +28,32 @@ const InputMultipleItems = () => {
 
     const handleNumberKeyPress = (event) => {
         if (event.key === 'Enter') {
-            // 数入力欄にカーソルがある状態でEnterが押された場合、その時点でのIDと数を保存する
             const newItem = { id, number };
             setInputHistory(prevHistory => [...prevHistory, newItem]);
-            // IDをリセット
             setId('');
-            // ID入力欄にフォーカスを移動
+            setNumber('1');
             idInputRef.current.focus();
         }
     };
 
-    const handleSave = () => {
-        // 保存ボタンを押した時点でのIDと数を保存する
-        const newItem = { id, number };
-        setInputHistory(prevHistory => [...prevHistory, newItem]);
-        setId('');
-        setNumber('1');
+    // const handleSave = () => {
+    //     const newItem = { id, number };
+    //     setInputHistory(prevHistory => [...prevHistory, newItem]);
+    //     setId('');
+    //     setNumber('1');
+    // };
+
+    const handleNumberFieldChange = (e) => {
+        const input = e.target.value;
+        if (input.length === 8 && !isNaN(input)) {
+            const newItem = { id, number };
+            setInputHistory(prevHistory => [...prevHistory, newItem]);
+            setId(input);
+            setNumber('1');
+            idInputRef.current.focus();
+        } else {
+            setNumber(input);
+        }
     };
 
     return (
@@ -71,7 +67,7 @@ const InputMultipleItems = () => {
                         value={id}
                         onChange={handleIdChange}
                         onKeyPress={handleIdKeyPress}
-                        ref={idInputRef} // ID入力欄にRefを追加
+                        ref={idInputRef}
                     />
                 </Form.Group>
                 <Form.Group controlId="formNumber" style={{ marginBottom: '20px' }}>
@@ -82,18 +78,18 @@ const InputMultipleItems = () => {
                         value={number}
                         onChange={handleNumberChange}
                         onKeyPress={handleNumberKeyPress}
-                        onPaste={handleNumberPaste} // 数入力欄でのペーストイベントを追加
+                        onChange={handleNumberFieldChange}
                     />
                 </Form.Group>
                 <div className="d-flex justify-content-between">
-                    <Button
+                    {/* <Button
                         onClick={handleSave}
                         variant="secondary"
                         style={{ width: '48%' }}
                         className="btn-hover"
                     >
                         保存
-                    </Button>
+                    </Button> */}
                     <Button
                         onClick={() => navigate('/', { state: { text: id } })}
                         variant="secondary"
