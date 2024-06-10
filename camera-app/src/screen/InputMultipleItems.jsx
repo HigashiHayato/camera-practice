@@ -10,6 +10,7 @@ const InputMultipleItems = () => {
     const [inputHistory, setInputHistory] = useState([]);
     const navigate = useNavigate();
     const numberInputRef = useRef(null);
+    const idInputRef = useRef(null);
 
     const handleIdChange = (e) => {
         setId(e.target.value);
@@ -19,13 +20,40 @@ const InputMultipleItems = () => {
         setNumber(e.target.value);
     };
 
-    const handleKeyPress = (event) => {
+    const handleNumberPaste = (e) => {
+        const pastedValue = e.clipboardData.getData('text/plain');
+        if (pastedValue.length === 8) {
+            // 直前のIDと数を保存
+            setInputHistory(prevHistory => [...prevHistory, { id, number }]);
+            // IDをセット
+            setId(pastedValue);
+            // 数をリセット
+            setNumber('1');
+        }
+        // ペーストされた値が数入力欄に表示されるのを防ぐ
+        e.preventDefault();
+    };
+
+    const handleIdKeyPress = (event) => {
         if (event.key === 'Enter') {
             numberInputRef.current.focus();
         }
     };
 
+    const handleNumberKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            // 数入力欄にカーソルがある状態でEnterが押された場合、その時点でのIDと数を保存する
+            const newItem = { id, number };
+            setInputHistory(prevHistory => [...prevHistory, newItem]);
+            // IDをリセット
+            setId('');
+            // ID入力欄にフォーカスを移動
+            idInputRef.current.focus();
+        }
+    };
+
     const handleSave = () => {
+        // 保存ボタンを押した時点でのIDと数を保存する
         const newItem = { id, number };
         setInputHistory(prevHistory => [...prevHistory, newItem]);
         setId('');
@@ -42,7 +70,8 @@ const InputMultipleItems = () => {
                         placeholder="id(8桁)"
                         value={id}
                         onChange={handleIdChange}
-                        onKeyPress={handleKeyPress}
+                        onKeyPress={handleIdKeyPress}
+                        ref={idInputRef} // ID入力欄にRefを追加
                     />
                 </Form.Group>
                 <Form.Group controlId="formNumber" style={{ marginBottom: '20px' }}>
@@ -52,6 +81,8 @@ const InputMultipleItems = () => {
                         ref={numberInputRef}
                         value={number}
                         onChange={handleNumberChange}
+                        onKeyPress={handleNumberKeyPress}
+                        onPaste={handleNumberPaste} // 数入力欄でのペーストイベントを追加
                     />
                 </Form.Group>
                 <div className="d-flex justify-content-between">
