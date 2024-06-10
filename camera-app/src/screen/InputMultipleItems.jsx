@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -56,6 +56,19 @@ const InputMultipleItems = () => {
         }
     };
 
+    // useEffect(() => {
+    //     // 数入力欄がレンダリングされた直後に、デフォルトの1を選択する
+    //     if (numberInputRef.current) {
+    //         numberInputRef.current.setSelectionRange(0, 1);
+    //     }
+    // }, []);
+
+    const handleNumberInputFocus = () => {
+        if (numberInputRef.current) {
+            numberInputRef.current.setSelectionRange(0, 1);
+        }
+    };
+
     return (
         <div className="container d-flex flex-column justify-content-center align-items-center vh-100" style={{ background: '#f8f9fa' }}>
             <h1 className="mb-4">複数件入力画面</h1>
@@ -79,6 +92,7 @@ const InputMultipleItems = () => {
                         onChange={handleNumberChange}
                         onKeyPress={handleNumberKeyPress}
                         onChange={handleNumberFieldChange}
+                        onFocus={handleNumberInputFocus}
                     />
                 </Form.Group>
                 <div className="d-flex justify-content-between">
